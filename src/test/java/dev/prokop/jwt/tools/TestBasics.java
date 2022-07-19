@@ -1,7 +1,6 @@
-package testmjson;
+package dev.prokop.jwt.tools;
 
-import mjson.Json;
-import static mjson.Json.*;
+import static dev.prokop.jwt.tools.Json.*;
 import org.junit.Test;
 import org.junit.Assert;
 

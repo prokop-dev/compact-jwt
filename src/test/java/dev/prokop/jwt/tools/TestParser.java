@@ -1,4 +1,4 @@
-package testmjson;
+package dev.prokop.jwt.tools;
 
 import org.junit.Test;
 import org.junit.runner.JUnitCore;
@@ -6,7 +6,6 @@ import org.junit.runner.Request;
 import org.junit.runner.Result;
 import org.junit.runner.notification.Failure;
 import org.junit.Assert;
-import mjson.Json;
 
 public class TestParser
 {

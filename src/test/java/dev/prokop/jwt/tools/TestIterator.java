@@ -1,13 +1,11 @@
-package testmjson;
+package dev.prokop.jwt.tools;
 
-import mjson.Json;
 import org.junit.Assert;
 import org.junit.Test;
 
 import java.util.Iterator;
-import java.util.Map;
 
-import static mjson.Json.*;
+import static dev.prokop.jwt.tools.Json.*;
 
 public class TestIterator
 {
@@ -15,11 +13,11 @@ public class TestIterator
 	public void testBoolean()
 	{
 		Json b1 = Json.make(true);
-		Iterator iter = b1.iterator();
+		Iterator<Json> iter = b1.iterator();
 		Assert.assertNotNull(iter);
 		Assert.assertEquals(true, iter.hasNext());
-		boolean val = (Boolean)iter.next();
-		Assert.assertEquals(true, val);
+		Json val =iter.next();
+		Assert.assertEquals(true, val.getValue());
 		Assert.assertEquals(false, iter.hasNext());
 	}
 
@@ -27,23 +25,23 @@ public class TestIterator
 	public void testNil()
 	{
 		Json nil = Json.nil();
-		Iterator iter = nil.iterator();
-		Assert.assertNotNull(iter);
-		Assert.assertEquals(true, iter.hasNext());
-		Object val = iter.next();
-		Assert.assertNull(val);
-		Assert.assertEquals(false, iter.hasNext());
+		Iterator<Json> iterator = nil.iterator();
+		Assert.assertNotNull(iterator);
+		Assert.assertEquals(true, iterator.hasNext());
+		Json next = iterator.next();
+		Assert.assertNull(next.getValue());
+		Assert.assertEquals(false, iterator.hasNext());
 	}
 
 	@Test
 	public void testNumber()
 	{
 		Json n1 = Json.make(567);
-		Iterator iter = n1.iterator();
+		Iterator<Json> iter = n1.iterator();
 		Assert.assertNotNull(iter);
 		Assert.assertEquals(true, iter.hasNext());
-		Number val = (Number)iter.next();
-		Assert.assertEquals(567, val);
+		Json val = iter.next();
+		Assert.assertEquals(567, val.getValue());
 		Assert.assertEquals(false, iter.hasNext());
 	}
 
@@ -51,11 +49,11 @@ public class TestIterator
 	public void testString()
 	{
 		Json s1 = Json.make("Hello");
-		Iterator iter = s1.iterator();
+		Iterator<Json> iter = s1.iterator();
 		Assert.assertNotNull(iter);
 		Assert.assertEquals(true, iter.hasNext());
-		String val = (String)iter.next();
-		Assert.assertEquals("Hello", val);
+		Json val = iter.next();
+		Assert.assertEquals("Hello", val.getValue());
 		Assert.assertEquals(false, iter.hasNext());
 	}
 
@@ -82,16 +80,17 @@ public class TestIterator
 	public void testObject()
 	{
 		Json o1 = object("p", 1, "p2", "p2value");
-		Iterator iter = o1.iterator();
+		System.out.println(o1);
+		Iterator<Json> iter = o1.iterator();
 		Assert.assertNotNull(iter);
 		Assert.assertEquals(true, iter.hasNext());
-		Map.Entry<String, Json> val = (Map.Entry<String, Json>)iter.next();
-		Assert.assertEquals("p", val.getKey());
-		Assert.assertEquals(1, val.getValue().getValue());
+		Json val = iter.next();
+//		Assert.assertEquals("p", val.getKey());
+		Assert.assertEquals(1, val.getValue());
 		Assert.assertEquals(true, iter.hasNext());
-		val = (Map.Entry<String, Json>)iter.next();
-		Assert.assertEquals("p2", val.getKey());
-		Assert.assertEquals("p2value", val.getValue().getValue());
+		val = iter.next();
+//		Assert.assertEquals("p2", val.getKey());
+		Assert.assertEquals("p2value", val.getValue());
 		Assert.assertEquals(false, iter.hasNext());
 	}
 }

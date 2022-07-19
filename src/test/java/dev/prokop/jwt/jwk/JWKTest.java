@@ -1,16 +1,16 @@
 package dev.prokop.jwt.jwk;
 
 import dev.prokop.jwt.TestTools;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
 import java.util.Map;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.assertEquals;
 
-class JWKTest {
+public class JWKTest {
 
     @Test
-    void parseExample1() {
+    public void parseExample1() {
         final JWK jwk = JWK.parse(TestTools.getResourceFileAsString("rfc/rfc7517/exampleJWK.json"));
         final Map<String, Object> internal = jwk.internal();
         assertEquals("EC", internal.get("kty"));

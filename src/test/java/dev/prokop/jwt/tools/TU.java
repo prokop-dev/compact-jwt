@@ -1,4 +1,4 @@
-package testmjson;
+package dev.prokop.jwt.tools;
 
 import java.net.URL;
 import java.util.Collection;
