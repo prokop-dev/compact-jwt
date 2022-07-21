@@ -13,7 +13,7 @@ public class JwkTest {
     @Test
     public void parseRsa() {
         Jwk jwk = Jwk.fromJson(TestTools.getResourceFileAsString("rfc/rfc7517/rsa.json"));
-        System.out.println(jwk);
+        System.out.println(jwk.pem());
     }
 
 }
